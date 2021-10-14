@@ -36,11 +36,14 @@ spec:
         - secretRef:
             name: influxdb-env
         ports:
-        - containerPort: 8086
+        - name: viewer
+          containerPort: 8086
+        - name: management
+          containerPort: 8083
         volumeMounts:
         - mountPath: /var/lib/influxdb
           name: var-lib-influxdb
-          
+
       volumes:
       - name: var-lib-influxdb
         persistentVolumeClaim:
@@ -54,10 +57,15 @@ metadata:
 spec:  
   selector:  
     app: influxdb  
-  ports:  
-    - protocol: TCP  
-      port: 80
-      targetPort: 8086
+  ports:
+  - name: viewer
+    protocol: TCP  
+    port: 80
+    targetPort: 8086
+  - name: manager
+    protocol: TCP  
+    port: 81
+    targetPort: 8083
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -71,10 +79,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - XXXX.com
+      - timeseries.kevin-asobi.com
       secretName: secret-influx
   rules:
-  - host: XXXX.com
+  - host: timeseries.kevin-asobi.com
     http:
       paths:
       - path: /
