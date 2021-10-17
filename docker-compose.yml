@@ -8,7 +8,7 @@ services:
     #   - /home/xxx/docker/grafana/influxdb:/var/lib/influxdb
     environment:
       DOCKER_INFLUXDB_INIT_MODE: setup
-      DOCKER_INFLUXDB_INIT_USERNAME: {}
-      DOCKER_INFLUXDB_INIT_PASSWORD: {}
-      DOCKER_INFLUXDB_INIT_ORG: {}
-      DOCKER_INFLUXDB_INIT_BUCKET: {}
+      DOCKER_INFLUXDB_INIT_USERNAME: koheiwatanabe0
+      DOCKER_INFLUXDB_INIT_PASSWORD: koheiwatanabe1
+      DOCKER_INFLUXDB_INIT_ORG: koheihome
+      DOCKER_INFLUXDB_INIT_BUCKET: mybucket
